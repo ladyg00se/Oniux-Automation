@@ -30,9 +30,10 @@ gnome-terminal -- bash
 
 ## ⚙️ Setup Instructions
 
-1. **Install Oniux (requires Rust toolchain):**
+1. **Verify Oniux is available in your Kali Linux system:**
+   Oniux is preinstalled in Kali Linux. To verify:
    ```bash
-   cargo install --git https://gitlab.torproject.org/tpo/core/oniux oniux@0.4.0
+   which oniux
    ```
 
 2. **Create script:**
@@ -67,4 +68,3 @@ gnome-terminal -- bash
 
 ---
 
-🔒 Stay private. Stay anonymous. Personal use.
