@@ -1,11 +1,12 @@
 #!/bin/bash
 
-# Pfad zur Programmliste
+# Absoluter Pfad zu Oniux
+ONIUX="/home/kali/.cargo/bin/oniux"
 PROGRAM_LIST="/programs/list.txt"
 
-# Sicherstellen, dass oniux installiert ist
-if ! command -v oniux &> /dev/null; then
-    echo "Error: Oniux not found. Please ensure it is installed on your system."
+# Prüfen, ob Oniux vorhanden ist
+if [ ! -x "$ONIUX" ]; then
+    echo "Error: Oniux not found at $ONIUX"
     exit 1
 fi
 
@@ -15,10 +16,9 @@ if [ ! -f "$PROGRAM_LIST" ]; then
     exit 1
 fi
 
-# Programme aus Liste starten
+# Programme aus der Liste torifizieren starten
 while IFS= read -r line || [ -n "$line" ]; do
-    # Leere Zeilen oder Kommentare überspringen
     [[ "$line" =~ ^#.*$ || -z "$line" ]] && continue
     echo "Starting with Oniux: $line"
-    oniux $line &
+    "$ONIUX" $line &
 done < "$PROGRAM_LIST"
