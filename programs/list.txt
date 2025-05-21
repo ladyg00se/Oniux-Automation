@@ -1,1 +1,13 @@
+# Programme, die automatisch über oniux gestartet werden sollen
+# Jede Zeile ein Befehl
+# Zeilen mit # werden ignoriert
 
+firefox
+hexchat
+curl https://icanhazip.com
+gnome-terminal -- bash
+# torifytes Terminal zum manuellen Arbeiten
+# weitere Programme kannst du einfach unten hinzufügen
+
+# Beispiel für Onion-Service-Zugriff:
+# curl http://exampleonion12345.onion
