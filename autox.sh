@@ -1,14 +1,24 @@
 #!/bin/bash
 
-# Optional: Stelle sicher, dass oniux vorhanden ist
+# Pfad zur Programmliste
+PROGRAM_LIST="/programs/list.txt"
+
+# Sicherstellen, dass oniux installiert ist
 if ! command -v oniux &> /dev/null; then
-    echo "Oniux nicht gefunden, Installation wird versucht..."
-    cargo install --git https://gitlab.torproject.org/tpo/core/oniux oniux@0.4.0
+    echo "Error: Oniux not found. Please ensure it is installed on your system."
+    exit 1
 fi
 
-# Starte eine grafische Anwendung über Tor (z.B. HexChat)
-oniux hexchat &
+# Prüfen, ob die Programmliste existiert
+if [ ! -f "$PROGRAM_LIST" ]; then
+    echo "Error: Program list not found at $PROGRAM_LIST"
+    exit 1
+fi
 
-# Starte z. B. eine Shell mit Tor-Isolation im Hintergrund
-# (z.B. für später verwendete CLI-Tools)
-gnome-terminal -- bash -c "oniux bash"
+# Programme aus Liste starten
+while IFS= read -r line || [ -n "$line" ]; do
+    # Leere Zeilen oder Kommentare überspringen
+    [[ "$line" =~ ^#.*$ || -z "$line" ]] && continue
+    echo "Starting with Oniux: $line"
+    oniux $line &
+done < "$PROGRAM_LIST"
