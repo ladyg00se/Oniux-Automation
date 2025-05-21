@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Absoluter Pfad zu Oniux
-ONIUX="/home/kali/.cargo/bin/oniux"
-PROGRAM_LIST="/programs/list.txt"
+ONIUX="/home/kali/.cargo/bin/oniux" # Pfad muss angepasst werden
+PROGRAM_LIST="/programs/list.txt" # Pfad zur Programmliste
 
 # Prüfen, ob Oniux vorhanden ist
 if [ ! -x "$ONIUX" ]; then
